@@ -3,80 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Immerse | Experiência Musical</title>
+    <title>Immerse | Experiência Musical Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="app-container">
-        <div class="particles-container" id="particles"></div>
+        <canvas id="particles"></canvas>
+        <div class="glow-effects">
+            <div class="glow epic-glow"></div>
+            <div class="glow hamilton-glow"></div>
+            <div class="glow heathers-glow"></div>
+        </div>
         
         <header class="main-header">
             <div class="header-overlay"></div>
             <div class="header-content">
-                <h1>Immerse</h1>
-                <p>Uma experiência sensorial nos musicais que revolucionaram o teatro</p>
-                <div class="scroll-hint">
-                    <span>Passe o mouse para ouvir</span>
-                    <i class="fas fa-chevron-down"></i>
+                <h1 class="title-gradient">IMMERSE</h1>
+                <p class="subtitle">Uma experiência sensorial imersiva nos musicais que<br>revolucionaram o teatro</p>
+                <div class="sound-controls">
+                    <button id="mute-toggle" class="mute-btn" aria-label="Alternar som">
+                        <i class="fas fa-volume-up"></i>
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+                <div class="scroll-hint-container">
+                    <div class="scroll-hint">
+                        <span>Passe o mouse para explorar</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
             </div>
         </header>
 
-        <div class="musicals-container">
+        <main class="musicals-container">
             <div class="musicals-grid">
                 <!-- Card Epic -->
                 <article class="musical-card epic-card" data-musical="epic">
-                    <div class="audio-indicator"></div>
-                    <div class="audio-highlight"></div>
+                    <div class="audio-indicator">
+                        <div class="pulse-dot"></div>
+                        <span class="hover-text">Ouvir amostra</span>
+                    </div>
                     <div class="card-inner">
-                        <img src="images/Epic logo.jpg" alt="Epic: The Musical" class="card-image">
+                        <div class="card-image-container">
+                            <img src="images/Epic logo.jpg" alt="Epic: The Musical" class="card-image" loading="lazy">
+                            <div class="image-overlay"></div>
+                        </div>
                         <div class="card-overlay"></div>
                         <div class="card-content">
+                            <h2 class="card-title">Epic: The Musical</h2>
                             <p class="musical-description">Uma odisseia musical moderna que combina rock progressivo com narrativa clássica</p>
-                            <a href="pages/epic.html" class="btn">Explore a Jornada <i class="fas fa-arrow-right"></i></a>
+                            <a href="pages/epic.html" class="btn btn-epic">
+                                <span>Explore a Jornada</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </article>
 
                 <!-- Card Hamilton -->
                 <article class="musical-card hamilton-card" data-musical="hamilton">
-                    <div class="audio-indicator"></div>
-                    <div class="audio-highlight"></div>
+                    <div class="audio-indicator">
+                        <div class="pulse-dot"></div>
+                        <span class="hover-text">Ouvir amostra</span>
+                    </div>
                     <div class="card-inner">
-                        <img src="images/Hamilton.jpg" alt="Hamilton" class="card-image">
+                        <div class="card-image-container">
+                            <img src="images/Hamilton.jpg" alt="Hamilton" class="card-image" loading="lazy">
+                            <div class="image-overlay"></div>
+                        </div>
                         <div class="card-overlay"></div>
                         <div class="card-content">
+                            <h2 class="card-title">Hamilton</h2>
                             <p class="musical-description">A revolucionária fusão de hip-hop e história americana que conquistou o mundo</p>
-                            <a href="pages/hamilton.html" class="btn">Descubra a Revolução <i class="fas fa-arrow-right"></i></a>
+                            <a href="pages/hamilton.html" class="btn btn-hamilton">
+                                <span>Descubra a Revolução</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </article>
 
                 <!-- Card Heathers -->
                 <article class="musical-card heathers-card" data-musical="heathers">
-                    <div class="audio-indicator"></div>
-                    <div class="audio-highlight"></div>
+                    <div class="audio-indicator">
+                        <div class="pulse-dot"></div>
+                        <span class="hover-text">Ouvir amostra</span>
+                    </div>
                     <div class="card-inner">
-                        <img src="images/Heathers.jpg" alt="Heathers: The Musical" class="card-image">
+                        <div class="card-image-container">
+                            <img src="images/Heathers.jpg" alt="Heathers: The Musical" class="card-image" loading="lazy">
+                            <div class="image-overlay"></div>
+                        </div>
                         <div class="card-overlay"></div>
                         <div class="card-content">
+                            <h2 class="card-title">Heathers</h2>
                             <p class="musical-description">Uma jornada sombria e satírica pelos dramas do ensino médio com humor ácido</p>
-                            <a href="pages/heathers.html" class="btn">Volte ao colegial <i class="fas fa-arrow-right"></i></a>
+                            <a href="pages/heathers.html" class="btn btn-heathers">
+                                <span>Volte ao colegial</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </article>
             </div>
-        </div>
+        </main>
 
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-logo">IMMERSE</div>
                 <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-spotify"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
                 <p class="copyright">© 2023 Immerse Experience. Todos os direitos reservados.</p>
             </div>
