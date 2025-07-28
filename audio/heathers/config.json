@@ -1,0 +1,11 @@
+{
+  "audios": [
+    {
+      "nome": "heathers.mp3",
+      "tempo_inicio": 104.0,
+      "tempo_fim": 120.0,
+      "volume": 0.7,
+      "loop": true
+    }
+  ]
+}

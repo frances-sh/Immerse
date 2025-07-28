@@ -1,0 +1,11 @@
+{
+  "audios": [
+    {
+      "nome": "epic.mp3",
+      "tempo_inicio": 222.0,
+      "tempo_fim": 250.0 ,
+      "volume": 0.7,
+    "loop": true
+    }
+  ]
+}

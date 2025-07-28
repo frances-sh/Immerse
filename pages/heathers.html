@@ -1,0 +1,723 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immerse | Heathers: The Musical</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;700;900&family=Playfair+Display:wght@700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos base - Tema Heathers */
+        :root {
+            --heathers-red: #c1272d;
+            --heathers-blue: #0071bc;
+            --heathers-yellow: #fbb03b;
+            --heathers-green: #39b54a;
+            --heathers-purple: #92278f;
+            --heathers-black: #1a1a1a;
+            --heathers-pink: #ff85ff;
+            --heathers-white: #f0f0f0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--heathers-white);
+            background-color: var(--heathers-black);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Special Elite', cursive;
+            font-weight: 700;
+            color: var(--heathers-pink);
+            letter-spacing: 1px;
+        }
+        
+        /* Efeitos de background */
+        .heathers-bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--heathers-red) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, var(--heathers-blue) 0%, transparent 20%),
+                radial-gradient(circle at 30% 70%, var(--heathers-yellow) 0%, transparent 20%),
+                radial-gradient(circle at 70% 30%, var(--heathers-green) 0%, transparent 20%);
+            background-color: var(--heathers-black);
+            z-index: -3;
+            opacity: 0.1;
+        }
+        
+        .act-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            filter: brightness(0.4);
+        }
+        
+        .act-background.active {
+            opacity: 0.5;
+        }
+        
+        #act1-background {
+            background-image: url('../images/heathers-act1.jpg');
+        }
+        
+        #act2-background {
+            background-image: url('../images/heathers-act2.jpg');
+        }
+        
+        /* Header estilizado - Estilo anos 80/gótico */
+        .main-header {
+            height: 80vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(to bottom, var(--heathers-purple), var(--heathers-black));
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -5%;
+        }
+        
+        .header-overlay {
+            background: linear-gradient(135deg, rgba(146,39,143,0.8) 0%, rgba(26,26,26,0.7) 100%);
+        }
+        
+        .header-content h1 {
+            font-size: 6rem;
+            margin-bottom: 1.5rem;
+            color: var(--heathers-pink);
+            text-shadow: 5px 5px 0 var(--heathers-red);
+            line-height: 1;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: neonGlow 1.5s ease-in-out infinite alternate;
+        }
+        
+        .header-content p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--heathers-white);
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Special Elite', cursive;
+        }
+        
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 10px var(--heathers-white), 0 0 20px var(--heathers-white), 0 0 30px var(--heathers-purple), 0 0 40px var(--heathers-purple);
+            }
+            to {
+                text-shadow: 0 0 5px var(--heathers-white), 0 0 10px var(--heathers-white), 0 0 15px var(--heathers-purple), 0 0 20px var(--heathers-purple);
+            }
+        }
+        
+        /* Container principal */
+        .acts-container {
+            padding: 8rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            background-color: rgba(26,26,26,0.8);
+            box-shadow: 0 0 40px rgba(255,133,255,0.1);
+            clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
+            border-top: 1px solid var(--heathers-purple);
+            border-bottom: 1px solid var(--heathers-purple);
+        }
+        
+        /* Seção de atos */
+        .act-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        
+        .act-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--heathers-pink);
+            animation: none;
+            text-shadow: 3px 3px 0 var(--heathers-red);
+        }
+        
+        .act-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: var(--heathers-pink);
+            border-radius: 3px;
+        }
+        
+        .act-header p {
+            font-size: 1.2rem;
+            color: var(--heathers-white);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Grid de cartões */
+        .acts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+        
+        .act-card {
+            position: relative;
+            border-radius: 0;
+            overflow: hidden;
+            height: 450px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid var(--heathers-pink);
+        }
+        
+        .act-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 15px 40px rgba(255,133,255,0.3);
+            z-index: 10;
+            border-color: var(--heathers-red);
+        }
+        
+        .act-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(30%);
+        }
+        
+        .act-card:hover .act-card-image {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        
+        .act-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(146,39,143,0.4) 50%, rgba(0,0,0,0) 100%);
+        }
+        
+        .act-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 2rem;
+            width: 100%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .act-card:hover .act-card-content {
+            transform: translateY(0);
+        }
+        
+        .act-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--heathers-pink);
+            text-shadow: 2px 2px 0 var(--heathers-black);
+        }
+        
+        .act-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+            opacity: 0.9;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            color: var(--heathers-white);
+        }
+        
+        .act-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .act-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--heathers-pink);
+            color: var(--heathers-black);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            border: 2px solid var(--heathers-white);
+        }
+        
+        /* Conteúdo dos atos */
+        .active-act-content {
+            display: none;
+            animation: fadeIn 0.8s ease;
+            background: rgba(26,26,26,0.9);
+            border-radius: 0;
+            padding: 2rem;
+            box-shadow: 0 5px 30px rgba(255,133,255,0.2);
+            margin-top: 2rem;
+            border-left: 5px solid var(--heathers-pink);
+        }
+        
+        .songs-list h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+            color: var(--heathers-pink);
+        }
+        
+        .songs-list h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: var(--heathers-pink);
+        }
+        
+        .song-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 0;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--heathers-purple);
+            border-bottom: 1px solid var(--heathers-purple);
+        }
+        
+        .song-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+            border-left: 4px solid var(--heathers-red);
+        }
+        
+        .song-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: var(--heathers-pink);
+            font-family: 'Special Elite', cursive;
+        }
+        
+        .song-info p {
+            color: var(--heathers-white);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .play-btn {
+            background: var(--heathers-purple);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 0;
+            color: var(--heathers-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .play-btn:hover {
+            background: var(--heathers-red);
+            transform: scale(1.1) rotate(90deg);
+        }
+        
+        /* Personagens */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .character-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--heathers-purple);
+            transition: all 0.3s ease;
+        }
+        
+        .character-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255,133,255,0.1);
+        }
+        
+        .character-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--heathers-pink);
+        }
+        
+        .character-card h4 {
+            color: var(--heathers-pink);
+            margin-bottom: 0.5rem;
+            font-family: 'Special Elite', cursive;
+        }
+        
+        .character-card p {
+            color: var(--heathers-white);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer estilizado */
+        .footer {
+            background: var(--heathers-black);
+            padding: 4rem 0;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            margin-top: -5%;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--heathers-purple);
+        }
+        
+        .footer-logo {
+            font-family: 'Special Elite', cursive;
+            font-size: 3rem;
+            color: var(--heathers-pink);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 3px 3px 0 var(--heathers-red);
+            letter-spacing: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            color: var(--heathers-white);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(45deg);
+        }
+        
+        .social-link i {
+            transform: rotate(-45deg);
+        }
+        
+        .social-link:hover {
+            color: var(--heathers-white);
+            transform: rotate(45deg) scale(1.1);
+            background: var(--heathers-red);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            font-family: 'Special Elite', cursive;
+        }
+        
+        /* Efeitos especiais */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--heathers-pink);
+            font-size: 0.9rem;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+            font-family: 'Special Elite', cursive;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .header-content p {
+                font-size: 1.1rem;
+            }
+            
+            .acts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .act-card {
+                height: 350px;
+            }
+            
+            .act-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Efeitos de background -->
+        <div class="heathers-bg-pattern"></div>
+        
+        <!-- Backgrounds para cada ato -->
+        <div class="act-background" id="act1-background"></div>
+        <div class="act-background" id="act2-background"></div>
+        
+        <div class="particles-container" id="particles"></div>
+        
+        <!-- Header dark e satírico -->
+        <header class="main-header">
+            <div class="header-overlay"></div>
+            <div class="header-content">
+                <h1>Heathers</h1>
+                <p>Uma comédia sombria sobre os horrores do ensino médio</p>
+                <div class="scroll-hint">
+                    <span>Descubra o lado sombrio abaixo</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Conteúdo principal -->
+        <div class="acts-container">
+            <div class="act-header">
+                <h1>Os Atos da Tragédia</h1>
+                <p>Heathers: The Musical é dividido em dois atos que exploram a ascensão e queda de Veronica Sawyer em Westerburg High, onde os populares reinam e a sobrevivência exige sacrifícios.</p>
+            </div>
+            
+            <!-- Grid de cartões de ato -->
+            <div class="acts-grid">
+                <!-- Ato 1 -->
+                <div class="act-card" data-act="act1" onclick="showAct('act1')">
+                    <img src="../images/heathers-act1-card.jpg" alt="Ato 1" class="act-card-image">
+                    <div class="act-card-overlay"></div>
+                    <div class="act-card-content">
+                        <div class="act-number">1</div>
+                        <h3>Ato Um: Ascensão</h3>
+                        <p>Veronica entra para o grupo das Heathers, mas o preço da popularidade se revela alto demais.</p>
+                    </div>
+                </div>
+                
+                <!-- Ato 2 -->
+                <div class="act-card" data-act="act2" onclick="showAct('act2')">
+                    <img src="../images/heathers-act2-card.jpg" alt="Ato 2" class="act-card-image">
+                    <div class="act-card-overlay"></div>
+                    <div class="act-card-content">
+                        <div class="act-number">2</div>
+                        <h3>Ato Dois: Queda</h3>
+                        <p>O que começa como acidentes vira uma espiral de violência e consequências inesperadas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Personagens principais -->
+            <div class="characters-grid">
+                <div class="character-card">
+                    <div class="character-icon"><i class="fas fa-crown"></i></div>
+                    <h4>Heather Chandler</h4>
+                    <p>A rainha do baile com um coração de gelo</p>
+                </div>
+                <div class="character-card">
+                    <div class="character-icon"><i class="fas fa-brain"></i></div>
+                    <h4>Veronica Sawyer</h4>
+                    <p>A garota inteligente que só queria se encaixar</p>
+                </div>
+                <div class="character-card">
+                    <div class="character-icon"><i class="fas fa-skull"></i></div>
+                    <h4>J.D.</h4>
+                    <p>O novo misterioso com soluções radicais</p>
+                </div>
+                <div class="character-card">
+                    <div class="character-icon"><i class="fas fa-dumbbell"></i></div>
+                    <h4>Kurt & Ram</h4>
+                    <p>Os atletas com mais músculos que neurônios</p>
+                </div>
+            </div>
+            
+            <!-- Conteúdo dos atos -->
+            <div class="active-act-content" id="act1-content">
+                <div class="songs-list">
+                    <h2><i class="fas fa-arrow-up"></i> Ato Um: Ascensão</h2>
+                    <p class="act-description">O primeiro ato apresenta Veronica Sawyer, uma garota inteligente que se cansa de ser invisível e usa seus talentos de falsificação para entrar no grupo mais popular da escola - as Heathers. Mas o preço da popularidade se revela mais alto do que ela imaginava.</p>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>Beautiful</h4>
+                            <p>4:12 | A dura realidade do ensino médio</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>Candy Store</h4>
+                            <p>3:23 | O hino de poder das Heathers</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>Fight For Me</h4>
+                            <p>3:14 | J.D. entra em cena</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>Dead Girl Walking</h4>
+                            <p>4:41 | A noite que muda tudo</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="active-act-content" id="act2-content">
+                <div class="songs-list">
+                    <h2><i class="fas fa-arrow-down"></i> Ato Dois: Queda</h2>
+                    <p class="act-description">O segundo ato explora as consequências das ações de Veronica e J.D. O que começou como um "acidente" vira uma espiral de violência, enquanto Veronica tenta desesperadamente consertar as coisas antes que seja tarde demais.</p>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>Our Love Is God</h4>
+                            <p>3:56 | A visão distorcida de J.D.</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>Seventeen</h4>
+                            <p>4:25 | Um momento de redenção</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>Shine a Light</h4>
+                            <p>3:45 | A hipocrisia da escola</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <div class="song-item">
+                        <div class="song-info">
+                            <h4>I Am Damaged</h4>
+                            <p>4:43 | O confronto final</p>
+                        </div>
+                        <button class="play-btn"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer dark -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">HEATHERS</div>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Ouvir no Spotify"><i class="fab fa-spotify"></i></a>
+                    <a href="#" class="social-link" title="Assistir no YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link" title="Seguir no Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" title="Curtir no TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p class="copyright">© 2023 Immerse Experience. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Mostrar o ato selecionado
+        function showAct(actName) {
+            // Esconder todos os conteúdos de ato
+            document.querySelectorAll('.active-act-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Remover a classe 'active' de todos os backgrounds
+            document.querySelectorAll('.act-background').forEach(bg => {
+                bg.classList.remove('active');
+            });
+            
+            // Mostrar o conteúdo do ato selecionado
+            document.getElementById(`${actName}-content`).style.display = 'block';
+            
+            // Ativar o background correspondente
+            document.getElementById(`${actName}-background`).classList.add('active');
+            
+            // Scroll suave para o conteúdo
+            document.querySelector('.active-act-content').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // Mostrar o primeiro ato por padrão
+        window.onload = function() {
+            showAct('act1');
+            
+            // Inicializar partículas se necessário
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        };
+    </script>
+</body>
+</html>
